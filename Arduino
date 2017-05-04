@@ -1,1 +1,112 @@
-\\Code voor de wagen
+#include "IRremote.h"
+
+int previous_value;
+
+// IR Receiver
+const int receiverPin = 5;
+
+// Left Motor
+const int pwmleftPin = 6;
+const int revleftPin = 7;
+
+//  Right Motor
+const int pwmrightPin = 9;
+const int revrightPin = 8;
+
+IRrecv irrecv(receiverPin);
+decode_results results;
+
+
+void setup()
+{
+  Serial.begin(9600);
+  irrecv.enableIRIn(); // Start the receiver
+  
+}
+
+
+void loop()
+{
+  if (irrecv.decode(&results)) // have we received an IR signal?
+  {
+    translateIR(); 
+    irrecv.resume(); // receive the next value
+  }
+}
+
+
+//void forward()
+//{
+//  analogWrite(pwmleftPin, HIGH);
+//  analogWrite(pwmrightPin, HIGH);  
+//}
+//
+//
+//void backward()
+//{
+//  digitalWrite(revleftPin, HIGH);   
+//  analogWrite(pwmleftPin, HIGH);
+//  digitalWrite(revrightPin, HIGH);
+//  analogWrite(pwmrightPin, HIGH); 
+//}
+//
+//
+//void right_turn()
+//{
+//  analogWrite(pwmleftPin, HIGH);
+//  digitalWrite(revrightPin, HIGH);
+//  analogWrite(pwmrightPin, HIGH);
+//}
+//
+//
+//void left_turn()
+//{
+//  digitalWrite(revleftPin, HIGH);
+//  analogWrite(pwmleftPin, HIGH);
+//  analogWrite(pwmrightPin, HIGH);
+//}
+
+
+void translateIR()
+
+{ 
+  switch(results.value) 
+  {
+    
+  case 0x20DF02FD:
+    Serial.print("Forward");
+    //forward();
+    break;
+
+  case 0x20DF827D:
+    Serial.print("Backward");
+    //backward(); 
+    break;
+
+  case 0x20DF609F:
+    Serial.print("Left turn");
+    //right_turn();
+    break;
+
+  case 0x20DFE01F:
+    Serial.print("Right turn");
+    //left_turn(); 
+    break;
+
+  case 0x20DF22DD:  
+    Serial.println("Ok"); 
+    break;
+
+  case 0x20DF0DF2:  
+    Serial.println("Play"); 
+    break;
+
+  case 0x20DF10EF:  
+    Serial.println("Docstation"); 
+    break;
+    
+  }
+
+  delay(100);
+
+}
