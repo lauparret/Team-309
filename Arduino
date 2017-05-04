@@ -35,36 +35,36 @@ void loop()
 }
 
 
-//void forward()
-//{
-//  analogWrite(pwmleftPin, HIGH);
-//  analogWrite(pwmrightPin, HIGH);  
-//}
-//
-//
-//void backward()
-//{
-//  digitalWrite(revleftPin, HIGH);   
-//  analogWrite(pwmleftPin, HIGH);
-//  digitalWrite(revrightPin, HIGH);
-//  analogWrite(pwmrightPin, HIGH); 
-//}
-//
-//
-//void right_turn()
-//{
-//  analogWrite(pwmleftPin, HIGH);
-//  digitalWrite(revrightPin, HIGH);
-//  analogWrite(pwmrightPin, HIGH);
-//}
-//
-//
-//void left_turn()
-//{
-//  digitalWrite(revleftPin, HIGH);
-//  analogWrite(pwmleftPin, HIGH);
-//  analogWrite(pwmrightPin, HIGH);
-//}
+void forward()
+{
+  analogWrite(pwmleftPin, HIGH);
+  analogWrite(pwmrightPin, HIGH);  
+}
+
+
+void backward()
+{
+  digitalWrite(revleftPin, HIGH);   
+  analogWrite(pwmleftPin, HIGH);
+  digitalWrite(revrightPin, HIGH);
+  analogWrite(pwmrightPin, HIGH); 
+}
+
+
+void right_turn()
+{
+  analogWrite(pwmleftPin, HIGH);
+  digitalWrite(revrightPin, HIGH);
+  analogWrite(pwmrightPin, HIGH);
+}
+
+
+void left_turn()
+{
+  digitalWrite(revleftPin, HIGH);
+  analogWrite(pwmleftPin, HIGH);
+  analogWrite(pwmrightPin, HIGH);
+}
 
 
 void translateIR()
